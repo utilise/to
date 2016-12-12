@@ -20,7 +20,7 @@ describe('to', function() {
       }
     ]
 
-    expect(a.reduce(to.obj, 1)).to.eql({
+    expect(a.reduce(to.obj, {})).to.eql({
       apples: { 
         'id': 'apples'
       , 'color': 'green' 
@@ -41,7 +41,7 @@ describe('to', function() {
       }
     ]
 
-    expect(a.reduce(to.obj, 1)).to.eql({
+    expect(a.reduce(to.obj, {})).to.eql({
       apples: { 
         'id': 'apples'
       , 'color': 'green' 
@@ -61,12 +61,36 @@ describe('to', function() {
       }
     ]
 
-    expect(a.reduce(to.obj('name'), 1)).to.eql({
+    expect(a.reduce(to.obj('name'), {})).to.eql({
       apples: { 
         'name': 'apples'
       , 'color': 'green' 
       }
     , bananas: { 
+        'name': 'bananas'
+      , 'color': 'yellow' 
+      }
+    })
+  })
+
+  it('should allow key as function', function() {
+    var a = [ 
+      { 
+        'name': 'apples'
+      , 'color': 'green' 
+      }
+    , { 
+        'name': 'bananas'
+      , 'color': 'yellow' 
+      }
+    ]
+
+    expect(a.reduce(to.obj((d, i) => d.name[i]), {})).to.eql({
+      a: { 
+        'name': 'apples'
+      , 'color': 'green' 
+      }
+    , a: { 
         'name': 'bananas'
       , 'color': 'yellow' 
       }

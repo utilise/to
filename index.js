@@ -1,4 +1,4 @@
-const is = require('utilise.is')
+var is = require('utilise.is')
 
 module.exports = { 
   arr: toArray
